@@ -1,0 +1,12 @@
+
+
+
+
+
+Formatting:
+
+- Global variables used throughout script should be all caps
+- Variables used internal to a function should use underscores to denote that 
+they are temporary, and not accessible to other functions
+
+
