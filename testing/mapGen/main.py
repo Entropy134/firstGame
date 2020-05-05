@@ -1,7 +1,20 @@
-# KidsCanCode - Game Development with Pygame video series
-# Tile-based game - Part 2
-# Collisions and Tilemaps
-# Video link: https://youtu.be/ajR4BZBKTr4
+
+# The base for this code is from the following source.
+#
+#   KidsCanCode - Game Development with Pygame video series
+#   Tile-based game - Part 2
+#   Collisions and Tilemaps
+#   Video link: https://youtu.be/ajR4BZBKTr4
+#
+# It was modified to include a random dungeon generator that was taken from yet
+# another source,
+#   
+#   Author: James Spencer
+#   Site Link: http://www.roguebasin.com/index.php?title=
+#       A_Simple_Dungeon_Generator_for_Python_2_or_3
+#
+#
+
 import pygame as pg
 import sys
 from os import path
@@ -23,7 +36,7 @@ class Game:
         game_folder = path.dirname(__file__)
  
         self.map_data = []
-        gen = mapGenerator()
+        gen = mapGenerator(width = GRIDWIDTH, height = GRIDHEIGHT)
         gen.gen_level()
         gen.gen_tiles_level()
 
@@ -35,13 +48,20 @@ class Game:
         # initialize all variables and do all the setup for a new game
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
+        MAP = {}
         for row, tiles in enumerate(self.map_data):
-            for col, tile in enumerate(tiles):
-                if tile == '#':
-                    Wall(self, col, row)
-                #if tile == 'P':
-                #    self.player = Player(self, col, row)
-                self.player = Player(self, 10, 10)
+            for col, tile in enumerate(tiles.strip()):
+                MAP[(col, row)] = int(tile)
+        
+        playerexists = False
+        for row, tiles in enumerate(self.map_data):
+            for col, tile in enumerate(tiles.strip()):
+                if MAP[(col, row)] == 1:
+                    if DEVLOG: print(col, row)
+                    Wall(self, col, row,  MAP)
+                elif not playerexists:
+                    self.player = Player(self, col, row)
+                    playerexists = True
     def run(self):
         # game loop - set self.playing = False to end the game
         self.playing = True

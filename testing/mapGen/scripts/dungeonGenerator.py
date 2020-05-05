@@ -2,9 +2,9 @@
  
 import random
  
-CHARACTER_TILES = {'stone': '#',
-                   'floor': ' ',
-                   'wall': '#'}
+CHARACTER_TILES = {'stone': '1',
+                   'floor': '0',
+                   'wall': '1'}
  
  
 class mapGenerator():
@@ -286,7 +286,7 @@ class mapGenerator():
                     tmp_tiles.append(self.tiles['wall'])
  
             self.tiles_level.append(''.join(tmp_tiles))
-        ''' 
+        '''
         print('Room List: ', self.room_list)
         print('\nCorridor List: ', self.corridor_list)
  
@@ -296,7 +296,13 @@ class mapGenerator():
             for row in self.tiles_level:
                 f.write(row + '\n')
 
- 
+
+
+
+
+
+
+
 if __name__ == '__main__':
     gen = mapGenerator()
     gen.gen_level()
