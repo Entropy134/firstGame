@@ -38,7 +38,8 @@ class Wall(pg.sprite.Sprite):
         self.game = game
 
         self.MAP = MAP
-
+        # The total width is the number of columns, x
+        # the total height is the number of rows, y
         #self.image = pg.Surface((TILESIZE, TILESIZE))
         #self.image.fill(GREEN)
 
@@ -61,7 +62,7 @@ class Wall(pg.sprite.Sprite):
             xnext = GRIDWIDTH - 1
         else:
             xnext = x + 1
-        a, b, c = (xprev, yprev), (x, yprev), (xnext, ynext)
+        a, b, c = (xprev, yprev), (x, yprev), (xnext, yprev)
         d, e, f = (xprev, y), (x, y), (xnext, y)
         g, h, i = (xprev, ynext), (x, ynext), (xnext, ynext)
         MATRIX = [
@@ -69,6 +70,8 @@ class Wall(pg.sprite.Sprite):
                 [int(self.MAP[d]), int(self.MAP[e]), int(self.MAP[f])],
                 [int(self.MAP[g]), int(self.MAP[h]), int(self.MAP[i])]
                 ]
+
+
         if DEVLOG: print(MATRIX)
         try:
             LIST = []
@@ -76,8 +79,9 @@ class Wall(pg.sprite.Sprite):
                 if MATRIX == val:
                     if DEVLOG: print(key, val, '*')
                     LIST.append(key[:3])
-                else:
-                    if DEVLOG: print(key, val, '')
+                
+                #else:
+                #    if DEVLOG: print(key, val, '')
 
             picnum = random.choice(LIST)
         except IndexError:
@@ -101,12 +105,10 @@ class Wall(pg.sprite.Sprite):
                     if DEVLOG: print(key, val, '')
             
             picnum = random.choice(LIST)
-
-
-
-
-            
-        pic = 'MAPTILES/' + 'MtSteel_'+ random.choice(LIST) + '.png'
+        
+        # if picnum == '543': print(x, y, MATRIX, 'c = ', c, self.MAP[c])
+        # Issue Closed.
+        pic = 'MAPTILES/' + 'MtSteel_'+ picnum + '.png'
         
         self.image = pg.image.load(os.path.join('assets', pic))
 
@@ -115,6 +117,38 @@ class Wall(pg.sprite.Sprite):
         self.y = y
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
+
+
+class Floor(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.groups = game.all_sprites, game.floors
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+
+        pic = 'MAPTILES/' + 'MtSteel_'+ '013' + '.png'
+        self.image = pg.image.load(os.path.join('assets', pic))
+
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.rect.x = x * TILESIZE
+        self.rect.y = y * TILESIZE
+
+        pg.sprite.LayeredUpdates.move_to_back(self)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

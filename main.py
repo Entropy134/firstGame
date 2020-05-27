@@ -18,7 +18,7 @@ WIDTH, HEIGHT = 1024, 768
 TILESIZE = 32
 LIGHTGREY = (120, 120, 120)
 
-TYPECHART = charts.getTypeChart()
+# TYPECHART = charts.getTypeChart()
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("First Game")
 
@@ -175,6 +175,8 @@ def game():
                 projectiles.append(shot)
 
                 PLAYER.cdCounter += 1
+        elif keys[pygame.K_q]:
+            run = False
         
         # Advance and remove enemies 
         for enemy in enemies[:]:

@@ -37,6 +37,7 @@ class Game:
  
         self.map_data = []
         gen = mapGenerator(width = GRIDWIDTH, height = GRIDHEIGHT)
+        # gen = mapGenerator(width = GRIDHEIGHT, height = GRIDWIDTH)
         gen.gen_level()
         gen.gen_tiles_level()
 
@@ -48,20 +49,26 @@ class Game:
         # initialize all variables and do all the setup for a new game
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
+        self.floors = pg.sprite.Group()
+
         MAP = {}
         for row, tiles in enumerate(self.map_data):
             for col, tile in enumerate(tiles.strip()):
                 MAP[(col, row)] = int(tile)
-        
+                print((col, row), tile) 
         playerexists = False
         for row, tiles in enumerate(self.map_data):
             for col, tile in enumerate(tiles.strip()):
                 if MAP[(col, row)] == 1:
                     if DEVLOG: print(col, row)
                     Wall(self, col, row,  MAP)
-                elif not playerexists:
-                    self.player = Player(self, col, row)
-                    playerexists = True
+                else:
+                    Floor(self, col, row)
+                    if not playerexists:
+                        self.player = Player(self, col, row)
+                        playerexists = True
+
+
     def run(self):
         # game loop - set self.playing = False to end the game
         self.playing = True

@@ -296,13 +296,6 @@ class mapGenerator():
             for row in self.tiles_level:
                 f.write(row + '\n')
 
-
-
-
-
-
-
-
 if __name__ == '__main__':
     gen = mapGenerator()
     gen.gen_level()

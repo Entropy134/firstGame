@@ -1,12 +1,49 @@
 
-
-
-
-
-Formatting:
+#------------------------------------------------------------------------------
+Formatting for Coding:
 
 - Global variables used throughout script should be all caps
 - Variables used internal to a function should use underscores to denote that 
 they are temporary, and not accessible to other functions
+
+
+Known Issues:
+
+- Damage to player from enemy projectiles seems incorrect
+    Damage recieved is correct value, Health bar is incorrect.
+
+
+- Charmander sprite that walks NE/NW is off centered
+
+#------------------------------------------------------------------------------
+Additions:
+--- High Priority ---
+- Combine dungeon generator with the main script
+
+- Fix sprite layering
+    The player sprite starts on the correct layer
+
+- Overhaul the sprite system to select from a spritesheet rather than load 
+    individual pictures.
+
+- Menu screen and pause feature
+- Save game
+ 
+--- Medium Priority ---
+- ITEMS!
+    sprites sheet: https://www.spriters-resource.com/fullview/5426/
+
+
+
+--- Very Low Priority ---
+
+- Player inventory
+- Farming System
+
+- Multiplayer
+
+
+
+
 
 

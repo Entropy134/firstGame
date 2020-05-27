@@ -113,6 +113,7 @@ class Player(Character):
     def __init__(self, x, y, species, level = 1):
         super().__init__(x, y, species, level)
 
+    '''
     def healthBar(self, window):
         pygame.draw.rect(window, (255,0,0), (self.x,
             self.y + 32, 32, 5)) 
@@ -120,7 +121,7 @@ class Player(Character):
         pygame.draw.rect(window, (0,0,225), (self.x,
             self.y + 32, 32 *\
             (1 - ((self.max_health - self.health)/self.max_health)), 5)) 
-    
+    '''
     # def experienceBar(self, window):
 
 #-------------------------------------------------------------------------------

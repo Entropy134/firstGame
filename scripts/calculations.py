@@ -38,7 +38,6 @@ def damageCalc(target, projectile):
     '''
     base_damage = projectile.dmg
     weakness_multiplier = TYPECHART[projectile.type][target.type.upper()]
-
     return base_damage * weakness_multiplier
 
 
