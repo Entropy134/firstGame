@@ -1,11 +1,8 @@
-
- 
 import random
  
 CHARACTER_TILES = {'stone': '1',
                    'floor': '0',
                    'wall': '1'}
- 
  
 class mapGenerator():
     def __init__(self, width=32, height=24, max_rooms=8, min_room_xy=5,

@@ -9,9 +9,6 @@ they are temporary, and not accessible to other functions
 
 Known Issues:
 
-- Damage to player from enemy projectiles seems incorrect
-    Damage recieved is correct value, Health bar is incorrect.
-
 
 - Charmander sprite that walks NE/NW is off centered
 
@@ -43,6 +40,15 @@ Additions:
 - Multiplayer
 
 
+
+Resolved Issues:
+
+ISSUE
+- Damage to player from enemy projectiles seems incorrect
+    Damage recieved is correct value, Health bar is incorrect.
+
+FIX
+- Player got hit twice by each projectile, projectile was not removed correctly
 
 
 

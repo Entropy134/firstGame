@@ -24,7 +24,7 @@ pygame.display.set_caption("First Game")
 
 BG = pygame.transform.scale(pygame.image.load(os.path.join("assets", 
     "BACKGROUNDS/background-black.png")), (WIDTH, HEIGHT))
-
+DEVLOG = False
 FPS = 60
 
 #------------------------------------------------------------------------------
@@ -115,12 +115,12 @@ def game():
         
         if len(enemies) == 0:
             LEVEL += 1
-            waveCount = 3
+            waveCount = 1
             
             for i in range(waveCount):
                 enemy = Enemy(random.randrange(25, WIDTH-25),
                         random.randrange(25, HEIGHT - 25),
-                        random.choice(['charmander', 'bulbasaur']),
+                        random.choice(['charmander']), #, 'bulbasaur']),
                         level = LEVEL)
                 enemies.append(enemy)
 
@@ -220,8 +220,8 @@ def game():
                     # when the projectiles are drawn, so run redraw before this
                     if PROJECTILE.collision(enemy):
                         enemy.health -= damageCalc(enemy, PROJECTILE)
-                        if PROJECTILE in projectiles:
-                            projectiles.remove(PROJECTILE)
+                        if DEVLOG: print('Enemy HP: ', enemy.health)
+                        projectiles.remove(PROJECTILE)
 
         # Advance and check collisions in enemy projectiles
         for projectile in enemyProjectiles[:]:
@@ -232,8 +232,8 @@ def game():
             else:
                 if projectile.collision(PLAYER):
                     PLAYER.health -= damageCalc(PLAYER, projectile)
-                    if projectile in projectiles:
-                        projectiles.remove(projectile)
+                    if DEVLOG: print('Player HP: ', PLAYER.health)
+                    enemyProjectiles.remove(projectile)
 
         # If not moving for so long, then change state to standing
         if PLAYER.stateCounter < 0:
